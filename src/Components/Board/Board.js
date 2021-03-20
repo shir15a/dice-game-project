@@ -74,6 +74,7 @@ export default class Board extends Component {
         if (this.state.player1Score >= parseInt(this.state.input)) {
             this.winSound();
             this.setState({ player1Score: 'YOU WON!', gameIsOn: false })
+
             return true
         }
         else if (this.state.player2Score >= parseInt(this.state.input)) {
@@ -139,7 +140,7 @@ export default class Board extends Component {
         return (
             <div className='board'>
                 <div className='buttons'>
-                    <button onClick={this.newGame}><FontAwesomeIcon icon={faPlus} />NEW GAME</button>
+                    <button onClick={this.newGame}><FontAwesomeIcon icon={faPlus} /> NEW GAME</button>
                     <div className='dices'>
                         <Dice dice={this.state.dice1} />
                         <Dice dice={this.state.dice2} />
