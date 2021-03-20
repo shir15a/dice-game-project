@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import Player from '../Player/Player'
 import Dice from '../Dices/Dice'
-import sound from './dice_sound.mp3'
-import winSound from './win.mp3'
+import Button from '../Button/Button'
 import './Board.css'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faSync, faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
+
+import sound from './dice_sound.mp3'
+import winSound from './win.mp3'
 
 
 export default class Board extends Component {
@@ -140,14 +143,14 @@ export default class Board extends Component {
         return (
             <div className='board'>
                 <div className='buttons'>
-                    <button onClick={this.newGame}><FontAwesomeIcon icon={faPlus} /> NEW GAME</button>
+                <Button onClick={this.newGame} icon = {faPlus} name = 'NEW GAME' />
                     <div className='dices'>
                         <Dice dice={this.state.dice1} />
                         <Dice dice={this.state.dice2} />
                     </div>
                     <div className="bottomButtons">
-                        <button onClick={this.roleDice}><FontAwesomeIcon icon={faSync} /> ROLE DICE</button>
-                        <button onClick={this.hold}><FontAwesomeIcon icon={faAngleDoubleDown} /> HOLD</button>
+                        <Button onClick={this.roleDice} icon = {faSync} name = 'ROLE DICE' />
+                        <Button onClick={this.hold} icon = {faAngleDoubleDown} name = 'HOLD'/>
                         <input name='val' type="number" placeholder="FINAL SCORE" min={2} onChange={this.playTill} />
                     </div>
                 </div>
@@ -162,7 +165,6 @@ export default class Board extends Component {
                     score={this.state.player2Score}
                     current={this.state.player2CurScore}
                     isPlayerActive={this.isPlayer2()}
-
                 />
             </div>
         )
