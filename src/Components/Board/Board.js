@@ -132,7 +132,7 @@ export default class Board extends Component {
     }
 
     isPlayer2 = () => {
-        return this.state.currentPlayer != 1
+        return this.state.currentPlayer !== 1
     }
 
     render() {
@@ -168,7 +168,3 @@ export default class Board extends Component {
     }
 }
 
-
-
-{/* <div className={`dice dice${this.state.dice1}`}></div>
-                        <div className={`dice dice${this.state.dice2}`}></div> */}
