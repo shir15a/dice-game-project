@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Player from '../Player/Player'
-import Dice from '../Dices/Dice'
+import './Board.css'
+
 import sound from './dice_sound.mp3'
 import winSound from './win.mp3'
-import './Board.css'
 
 export default class Board extends Component {
     state = {
@@ -17,6 +17,7 @@ export default class Board extends Component {
         dice2: 0,
         currentPlayer: 1,
         input: 100,
+        isWin: false,
         gameIsOn: true
     }
 
@@ -48,6 +49,9 @@ export default class Board extends Component {
     }
 
     roleDice = async () => {
+        console.log("currentPlayer", this.state.currentPlayer);
+        console.log("player1CurScore", this.state.player1CurScore);
+        console.log("player2CurScore", this.state.player2CurScore);
         if (this.state.gameIsOn) {
             await this.updateDice();
             if (this.state.currentPlayer === 1) {
@@ -55,50 +59,69 @@ export default class Board extends Component {
                     this.hold();
                     this.setState({ player1CurScore: 0 })
                 }
-                else this.setState({ player1CurScore: this.state.player1CurScore + this.state.dice1 + this.state.dice2 })
+                else {
+                    this.setState({ player1CurScore: this.state.player1CurScore + this.state.dice1 + this.state.dice2 })
+                    console.log(this.checkWin());
+
+                    if(this.checkWin()){
+                        this.setState({isWin:true})
+                    }
+                }
             }
             else {
                 if (this.checkIfDouble()) {
                     this.hold();
                     this.setState({ player2CurScore: 0 })
                 }
-                else this.setState({ player2CurScore: this.state.player2CurScore + this.state.dice1 + this.state.dice2 })
+                else {
+                    this.setState({ player2CurScore: this.state.player2CurScore + this.state.dice1 + this.state.dice2 })
+                    console.log(this.checkWin());
+                    if(this.checkWin()){
+                        this.setState({isWin:true})
+                    }
+                }
             }
         }
     };
 
     checkWin = () => {
+        console.log('this.state.player1Score', this.state.player1Score);
+        console.log('parseInt(this.state.input)', parseInt(this.state.input));
         if (this.state.player1Score >= parseInt(this.state.input)) {
             this.winSound();
             this.setState({ player1Score: 'YOU WON!', gameIsOn: false })
+            console.log('1 win');
             return true
         }
         else if (this.state.player2Score >= parseInt(this.state.input)) {
             this.winSound();
             this.setState({ player2Score: 'YOU WON!', gameIsOn: false })
+            console.log('2 win');
+
             return true
         }
-        else return false
+        else {console.log('else')}
     }
 
     hold = async () => {
         if (this.state.gameIsOn) {
             this.setState({ player1CurScore: 0, player2CurScore: 0 })
             if (this.state.currentPlayer === 1) {
-                await this.setState({
-                    player1Score: this.state.player1Score + this.state.player1CurScore,
+                this.checkWin();
+                this.setState({
+                    player1Score: this.state.player1CurScore + this.state.player1Score,
                     currentPlayer: 2,
                 })
-                this.checkWin()
             }
             else {
-                await this.setState({
-                    player2Score: this.state.player2Score + this.state.player2CurScore,
+                this.checkWin();
+                this.setState({
+                    player2Score: this.state.player2CurScore + this.state.player2Score,
                     currentPlayer: 1,
                 })
-                this.checkWin()
             }
         }
+
     }
 
     newGame = () => {
@@ -121,51 +144,49 @@ export default class Board extends Component {
     }
 
     playTill = (e) => {
+        console.log(e.target.value);
         this.setState({ input: e.target.value })
     }
 
-    isPlayer = () => {
+    isPlayer = () =>{
         return this.state.currentPlayer === 1
     }
 
-    isPlayer2 = () => {
+    isPlayer2 = () =>{
         return this.state.currentPlayer != 1
     }
 
     render() {
         return (
-            <div className='board'>
+            <div className='boardContainer'>
                 <div className='buttons'>
                     <button onClick={this.newGame}>+ NEW GAME</button>
-                    <div className='dices'>
-                        <Dice dice={this.state.dice1} />
-                        <Dice dice={this.state.dice2} />
+                    <span>is win{this.state.isWin}</span>
+                    <div className='diceContainer'>
+                        <div className={`dice dice${this.state.dice1}`}></div>
+                        <div className={`dice dice${this.state.dice2}`}></div>
                     </div>
-                    <div className="bottomButtons">
-                        <button onClick={this.roleDice}>ROLE DICE</button>
-                        <button onClick={this.hold}>HOLD</button>
+                    <div className="bottomBut">
+                        <button onClick={this.roleDice}><span><i className="sync icon"></i></span>ROLE DICE</button>
+                        <button onClick={this.hold}><span><i className="hand rock icon"></i></span>HOLD</button>
                         <input name='val' type="number" placeholder="FINEL SCORE" min={2} onChange={this.playTill} />
                     </div>
                 </div>
+                <div style={{color: this.state.currentPlayer === 1 ? 'red': 'green'}}>{this.state.currentPlayer}</div>
                 <Player
                     id={this.state.player1Id}
                     score={this.state.player1Score}
                     current={this.state.player1CurScore}
-                    isPlayerActive={this.isPlayer()}
+                    isPlayerActive ={this.isPlayer()}
                 />
                 <Player
                     id={this.state.player2Id}
                     score={this.state.player2Score}
                     current={this.state.player2CurScore}
-                    isPlayerActive={this.isPlayer2()}
+                    isPlayerActive ={this.isPlayer2()}
 
                 />
             </div>
         )
     }
 }
-
-
-
-{/* <div className={`dice dice${this.state.dice1}`}></div>
-                        <div className={`dice dice${this.state.dice2}`}></div> */}

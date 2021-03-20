@@ -1,105 +1,69 @@
-.boardContainer {
-    height: 100vh;
-    width: 100vw;
-    background-color: #82ccdd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.board {
+  height: 100vh;
+  width: 100vw;
+  background-image:url('/src/Components/img/background.png');
+  background-repeat:no-repeat;
+  background-position:left center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   
+.buttons {
+  height: 94vh;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  left: 45%;
+}
+  
+
+button {
+  background: transparent;
+  border: 1px solid black  ;
+  color: black;
+  padding: 1.5vh;
+  cursor: pointer;
+  border-radius: 4px;
+}
+  
+input {
+  text-align: center;
+  padding: 0px;
+  width: 8.5vw;
+  height: 8vh;
+  background: transparent;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+  
+.dices {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bottomButtons {
+  height: 25vh;
+  padding: 1vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 500px) {
   .buttons {
-    height: 94vh;
-    position: absolute;
-    /* margin-left: auto;
-    margin-right: auto; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    /* padding: 16px; */
-    left: 50%;
-    transform: translateX(-50%);
-    
+    height: 85vh;
+    left: 35%;
   }
-  
-  .bottomBut {
-    display: flex;
-    flex-direction: column;
+  .dices {
+    height: 25vh;
   }
-  
-  button {
-      background: transparent;
-      border: 1px solid white;
-
-      color: white;
-      padding: 8px;
-      cursor: pointer;
-  }
-  
-  
   input {
-    text-align: center;
-    padding: 0px;
-    width: 110px;
-    height: 48px;
-    background: transparent;
-    cursor: pointer;
-    outline: inherit;
-    border: 1px solid white;
-    color:white;
-    /* font-size: 18px; */
+    width:25vw;
   }
-  
-  .diceContainer {
-    height: 220px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .dice {
-    width: 100px;
-    height: 100px;
-  }
-
-  
-.dice1 {
-  background: url(../img/dice-1.png)no-repeat center center/cover;
 }
-.dice2 {
-  background: url(../img/dice-2.png)no-repeat center center/cover;
-}
-.dice3 {
-  background: url(../img/dice-3.png)no-repeat center center/cover;
-}
-.dice4 {
-  background: url(../img/dice-4.png)no-repeat center center/cover;
-}
-.dice5 {
-  background: url(../img/dice-5.png)no-repeat center center/cover;
-}
-.dice6 {
-  background: url(../img/dice-6.png)no-repeat center center/cover;
-}
-
-  
-  .bottomBut {
-    height: 160px;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
-    opacity: 1; /* Firefox */
-  }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: white;
-  }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
-    color: white;
-  }

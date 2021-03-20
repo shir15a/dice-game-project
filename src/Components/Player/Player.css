@@ -1,57 +1,38 @@
 .player {
-    width: 40vw;
-    height: 70vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 64px 32px 64px 32px;
-  }
+  width: 27vw;
+  height: 66vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8vh 5vw 8vw 5vh;
+  color: black;
+}
+
+.player1 {
+  background-color: #ecf0f1;
+}
   
-  .player1 {
-    background-color: #60a3bc;
-    color: var(--main-color);
-  }
+.player2 {
+  background-color: #bdc3c7;
+}
   
-  .player2 {
-    background-color: #3c6382;
-    color: var(--less-color);
+.currentPlayer {
+  width: 12vw;
+  height: 20vh;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;  
+}
+
+@media screen and (max-width: 500px) {
+  .player1, .player2 {
+      font-size: x-small;
   }
-  
-  .heading {
-    padding: 60px 0 60px 0;
-  }
-  
   .current {
-    width: 12vw;
-    height: 20vh;
-    color: #3d405b;
-    padding: 16px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;  
+    font-size: xx-small;
+    margin: auto auto;
   }
-  
-  .current h3 {
-    font-weight: 700;
-    font-size: larger;
-  }
-  
-  .player1 .current, .player2 .current {
-    background-color: #63cdda;
-  }
-  
-  /* .player2 .current {
-    background-color: #e07a5f;
-  } */
-  
-  .score {
-    font-size: 64px;
-    font-weight: 300;
-  }
-  
-  .player h1 span {
-    font-size: 128px;
-    /* color: transparent; */
-  }
+}
