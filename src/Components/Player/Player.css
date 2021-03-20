@@ -31,8 +31,9 @@
   .player1, .player2 {
       font-size: x-small;
   }
-  .current {
-    font-size: xx-small;
+
+  .currentPlayer h1{
+    font-size: 1em;
     margin: auto auto;
   }
 }
