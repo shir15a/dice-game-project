@@ -144,7 +144,7 @@ export default class Board extends Component {
                     <div className="bottomButtons">
                         <button onClick={this.roleDice}>ROLE DICE</button>
                         <button onClick={this.hold}>HOLD</button>
-                        <input name='val' type="number" placeholder="FINEL SCORE" min={2} onChange={this.playTill} />
+                        <input name='val' type="number" placeholder="FINAL SCORE" min={2} onChange={this.playTill} />
                     </div>
                 </div>
                 <Player
