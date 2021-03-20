@@ -4,6 +4,9 @@ import Dice from '../Dices/Dice'
 import sound from './dice_sound.mp3'
 import winSound from './win.mp3'
 import './Board.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faSync, faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
+
 
 export default class Board extends Component {
     state = {
@@ -136,14 +139,14 @@ export default class Board extends Component {
         return (
             <div className='board'>
                 <div className='buttons'>
-                    <button onClick={this.newGame}>+ NEW GAME</button>
+                    <button onClick={this.newGame}><FontAwesomeIcon icon={faPlus} />NEW GAME</button>
                     <div className='dices'>
                         <Dice dice={this.state.dice1} />
                         <Dice dice={this.state.dice2} />
                     </div>
                     <div className="bottomButtons">
-                        <button onClick={this.roleDice}>ROLE DICE</button>
-                        <button onClick={this.hold}>HOLD</button>
+                        <button onClick={this.roleDice}><FontAwesomeIcon icon={faSync} /> ROLE DICE</button>
+                        <button onClick={this.hold}><FontAwesomeIcon icon={faAngleDoubleDown} /> HOLD</button>
                         <input name='val' type="number" placeholder="FINAL SCORE" min={2} onChange={this.playTill} />
                     </div>
                 </div>
