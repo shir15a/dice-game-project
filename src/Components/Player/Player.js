@@ -6,7 +6,7 @@ export default class Player extends Component {
     render() {
         return (
             <div className={`player player${this.props.id}`}>
-                <h1 style={{ color: this.props.isPlayerActive ? '#84817a' : 'black' }}>PLAYER {this.props.id} </h1>
+                <h1 style={{ color: this.props.isPlayerActive ? '#84817a' : 'black' }}>PLAYER {this.props.id}</h1>
                 <h1>{this.props.score}</h1>
                 <div className="currentPlayer" style={{ color: this.props.isPlayerActive ? 'black' : 'transparent' }}>
                     <h1>CURRENT</h1>
